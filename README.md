@@ -133,6 +133,12 @@ function onFail(message) {
 
 - Specifically important are the options `Camera.DestinationType.[option]`, which can save the picture as a binary file or a Base64 encoded string, and `Camera.PictureSourceType.[option]`, which can either take a new picture or select one from the camera roll.
 
+##Social Network Photo Exercise
+- For this exercise we will use the camera API to take a picture from the photo library and place it into the starter app.
+- Download the starter code from [here](social_network_starter_app/).
+- The event handlers have already been created for you in photos.js.
+- You will be replacing the background image of `#signup-profile-picture`.
+
 ##FileTransfer API
 - The FileTransfer API allows you to upload and download files using the native device.
 - This is especially useful for allowing users to upload photos from their device.
