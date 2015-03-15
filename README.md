@@ -198,8 +198,50 @@ var myContact = navigator.contacts.create({"displayName": "Test User"});
 - After the AJAX save and file upload try to add the contact to the contact database on the device.
 - **Bonus:** Check to see if the contact exists already on the device before saving it.
 
+##In-App Browser
+- The in-app browser is helpful for launching any kind of web session inside of your app.
+- A good use of this is when you need your users to navigate to an external webpage without leaving the app.
+- An example may be to allow them to view a news article.
+- Another great use case for an in-app browser is for an oAuth flow.
+- This is how it works:
+
+####First we provide a reference to the window
+
+```
+var windowRef = window.open("url here", "_blank", "location=yes");
+```
+
+- `_blank` tells the app to open a new window rather than load the page inside the current view.
+- `location=yes` tells the in-app browser to display the location to the end user.
+
+####We can close the window at any time
+
+```
+windowRef.close();
+```
+
+####We can also attach event listeners to detect window-related events
+
+```
+windowRef.addEventListener("loadstop", function(event) {
+	console.log(event.url);
+});
+```
+
 ##oAuth with Phonegap
 - With native applications you can integrate with the device's installed applications such as the Facebook app.
 - Phonegap currently does not have any great plugins to do this, so an in-app browser is your best bet.
 - An advantage of using oAuth via an in-app browser is that you can support unlimited providers.
 - This part has been done for you already, and you can see the code in signup.js.
+
+##oAuth Flow with the In-App Browser
+- Generally the oAuth flow is as follows:
+	- Step 1: The app will open a new browser window and request a web service url passing a query string token and provider.
+	- Step 2: The web service will store the token along with the authentication hash to the database.
+	- Step 3: A request will be made to the web service passing along the token to retrieve the authentication hash.
+	- Step 4: The web service will delete the token and authentication hash from the database.
+- Your initial request may look like this:
+
+```
+http://daretodiscover.herokuapp.com/start_auth?token=1234&provider=facebook
+```
