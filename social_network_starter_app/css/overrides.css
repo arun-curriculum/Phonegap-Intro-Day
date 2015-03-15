@@ -1,0 +1,15 @@
+* {
+	text-shadow:none !important;
+}
+
+.ui-overlay-a {
+	background-color:#FFF !important;
+}
+
+.ui-navbar li {
+	position:relative;
+}
+
+.ui-grid-b {
+	padding:10px 0;
+}

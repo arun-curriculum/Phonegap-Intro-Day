@@ -1,0 +1,14 @@
+#- reverse order of tag adding field
+#- sorting interests by popularity and alpha
+#- add gender and age range to filters
+#- add save list
+#- number for new chats
+#- clear notes instead of dismiss all
+- passing count for matchbox
+#- add interests to user profile in between map and notes
+#- add distance away to profile
+#- add bluetooth on or off in settings
+#- invite friends
+#- manage page move to my profile
+#- gears at top for privacy tos etc.
+- email us, bug report

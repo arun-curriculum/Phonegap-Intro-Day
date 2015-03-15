@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Social Network</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!--JQM-->
+	<link rel="stylesheet" href="libraries/jquery.mobile-1.4.4/jquery.mobile-1.4.4.min.css" />
+	<link rel="stylesheet" href="libraries/jqm-icon-pack/jqm-icon-pack-fa.css" />
+
+	<!--Font Awesome-->
+	<link rel="stylesheet" href="libraries/font-awesome-4.2.0/css/font-awesome.min.css" />
+
+	<!--Custom-->
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/helpers.css" />
+	<link rel="stylesheet" href="css/overrides.css" />
+</head>
+
+<body>
+
+<!--Social Login Page-->
+<div class="large-bottom-pad" data-role="page" data-theme="sg-blue" id="social-login">
+	<div class="login-logo margin-top-100 txt-center white-text">
+		<img src="images/logo.png" />
+	</div>
+	<div class="margin-top-50 container">
+		<a class="signup-facebook-option" data-role="button" href="#" data-theme="b" data-corners="false"><i class="fa fa-facebook margin-right-10"></i> Login with Facebook</a>
+	</div>
+	<div id="login-signup-button" class="txt-center">
+		Register a User
+	</div>
+</div>
+<!--/Social Login Page-->
+
+<!--Signup Page 1-->
+<div data-role="page" id="signup1">
+	<!--Sweetglue Header-->
+	<div class="header-ios-fix"></div>
+	<div class="sg-header sg-header-fixed">
+		<div class="ui-grid-b">
+			<div class="ui-block-a white-text padding-left-20">
+				<a href="#" data-transition="slidedown" data-rel="back">Back</a>
+			</div>
+			<div class="ui-block-b txt-center white-text">
+				Add User
+			</div>
+			<div class="ui-block-c txt-right padding-right-20">
+				<a href="#user-list" data-transition="slide">Member List</a>
+			</div>
+		</div>
+	</div>
+	<!--/Sweetglue Header-->
+
+	<div class="main-content main-content-fade">
+		<div class="container">
+			<div class="margin-top-10">
+				<div class="sg-web2-input-wrapper-light">
+					<input id="new-firstname" class="sg-web2-input sg-web2-input-light" type="text" placeholder="First Name" data-role="none" />
+				</div>
+				<div class="sg-web2-input-wrapper-light">
+					<input id="new-lastname" class="sg-web2-input sg-web2-input-light" type="text" placeholder="Last Name" data-role="none" />
+				</div>
+				<div class="sg-web2-input-wrapper-light">
+					<input id="new-email" class="sg-web2-input sg-web2-input-light" type="text" placeholder="Email Address" data-role="none" />
+				</div>
+			</div>
+
+			<div class="margin-top-20">
+				<div id="signup-profile-picture" style="background:url(images/profile-placeholder.jpg) no-repeat;">
+					<div class="signup-photo-cover">
+						<i class="fa fa-refresh fa-fw fa-spin"></i>
+					</div>
+				</div>
+			</div>
+
+			<div class="center-constrain">
+				<div id="signup-take-photo" class="column-container margin-top-20">
+					<div class="small-column-left signup-left-icon">
+						<i class="fa fa-camera"></i>
+					</div>
+					<div class="big-column-right signup-right-text">
+						Take a New Photo
+					</div>
+				</div>
+
+				<div id="signup-use-library" class="column-container margin-top-20">
+					<div class="small-column-left signup-left-icon">
+						<i class="fa fa-file-photo-o"></i>
+					</div>
+					<div class="big-column-right signup-right-text">
+						Use Photo Library
+					</div>
+				</div>
+			</div>
+
+			<div class="margin-top-20">
+				<a id="add-user-button" href="#" data-role="button">Submit User</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!--/Signup Page 1-->
+
+<!--User List Page-->
+<div data-role="page" id="user-list">
+	<div class="cover">
+		<i class="fa fa-refresh fa-fw fa-spin"></i>
+	</div>
+	<!--Sweetglue Header-->
+	<div class="sg-header sg-header-fixed">
+		<div class="ui-grid-b">
+			<div id="dsn" class="ui-block-a white-text padding-left-20">
+			</div>
+			<div class="ui-block-b txt-center white-text">
+				Members
+			</div>
+			<div class="ui-block-c txt-right padding-right-20">
+				
+			</div>
+		</div>
+	</div>
+	<!--/Sweetglue Header-->
+
+	<div id="nearby-user-list-container" class="main-content main-content-fade">
+		<script type="text/x-handlebars-template" id="nearby-user-template">
+			<!--One User-->
+			<div class="containment-relative">
+				<div data-id="{{id}}" class="nearby-user user-list-container">
+					<div class="user-list-column-one">
+						<div class="user-list-image" style="background:url({{avatar}}) no-repeat;"></div>
+					</div>
+					<div class="user-list-column-two">
+						<div class="bold">
+							{{first_name}} {{last_name}}
+						</div>
+						<div class="margin-top-10">
+							Email: {{email}}
+						</div>
+						<i class="fa fa-chevron-right user-list-arrow"></i>
+					</div>
+				</div>
+			</div>
+			<!--/One User-->
+		</script>
+	</div>
+
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#signup1" data-icon="user">Add User</a></li>
+				<li><a href="#social-login" data-icon="fire" data-transition="slidedown">Logout</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!--/User List Page-->
+
+<!--User Edit Page-->
+<div data-role="page" id="user-edit">
+	<div class="cover">
+		<i class="fa fa-refresh fa-fw fa-spin"></i>
+	</div>
+	<!--Sweetglue Header-->
+	<div class="sg-header sg-header-fixed">
+		<div class="ui-grid-b">
+			<div id="dsn" class="ui-block-a white-text padding-left-20">
+				<a href="#user-list">Back</a>
+			</div>
+			<div class="ui-block-b txt-center white-text">
+				Edit Member
+			</div>
+			<div class="ui-block-c txt-right padding-right-20">
+				
+			</div>
+		</div>
+	</div>
+	<!--/Sweetglue Header-->
+
+	<div class="main-content main-content-fade">
+		<div class="container">
+			<div class="bold">First Name</div>
+
+			<div class="margin-top-10">
+				<input id="edit-firstname" type="text" />
+			</div>
+
+			<div class="bold margin-top-20">First Name</div>
+
+			<div class="margin-top-10">
+				<input id="edit-lastname" type="text" />
+			</div>
+
+			<div class="bold margin-top-20">Email Address</div>
+
+			<div class="margin-top-10">
+				<input id="edit-email" type="email" />
+			</div>
+
+			<div class="margin-top-20">
+				<div id="edit-profile-picture" style="background:url(images/profile-placeholder.jpg) no-repeat;">
+					<div class="edit-photo-cover">
+						<i class="fa fa-refresh fa-fw fa-spin"></i>
+					</div>
+				</div>
+			</div>
+
+			<div class="center-constrain">
+				<div id="edit-take-photo" class="column-container margin-top-20">
+					<div class="small-column-left signup-left-icon">
+						<i class="fa fa-camera"></i>
+					</div>
+					<div class="big-column-right signup-right-text">
+						Take a New Photo
+					</div>
+				</div>
+
+				<div id="edit-use-library" class="column-container margin-top-20">
+					<div class="small-column-left signup-left-icon">
+						<i class="fa fa-file-photo-o"></i>
+					</div>
+					<div class="big-column-right signup-right-text">
+						Use Photo Library
+					</div>
+				</div>
+			</div>
+
+			<div class="margin-top-20">
+				<a id="submit-edits-button" href="#" data-role="button">Submit Edits</a>
+			</div>
+			<div class="margin-top-20">
+				<a id="delete-user-button" href="#" data-role="button" data-theme="b">Delete User</a>
+			</div>
+		</div>
+	</div>
+
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#signup1" data-icon="user">Add User</a></li>
+				<li><a href="#social-login" data-icon="fire">Logout</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!--/User Edit Page-->
+
+<!--Main Cordova File-->
+<script src="cordova.js"></script>
+
+<!--FastClick-->
+<script src="libraries/fastclick/fastclick.js"></script>
+
+<!--jQuery-->
+<script src="libraries/jquery-2.1.1/jquery-2.1.1.js"></script>
+<script src="libraries/jquery.mobile-1.4.4/jquery.mobile-1.4.4.min.js"></script>
+
+<!--Handlebars-->
+<script src="libraries/handlebars-2.0.0/handlebars.js"></script>
+
+<!--Custom-->
+<script src="js/helpers.js"></script>
+<script src="js/app.js"></script>
+<script src="js/photos.js"></script>
+<script src="js/signup.js"></script>
+
+</body>
+
+</html>
