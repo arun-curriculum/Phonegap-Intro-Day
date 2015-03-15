@@ -245,3 +245,50 @@ windowRef.addEventListener("loadstop", function(event) {
 ```
 http://daretodiscover.herokuapp.com/start_auth?token=1234&provider=facebook
 ```
+
+##Geolocation
+- The Geolocation API allows us to access the device's geolocation features such as the GPS and cell triangulation features.
+- Let's take a look at the documentation [here](http://plugins.cordova.io/#/package/org.apache.cordova.geolocation).
+- In order to use this feature we have to install the plugin:
+
+```
+cordova plugin add org.apache.cordova.geolocation
+```
+
+- This plugin also adds to the global `navigator` object to contain its methods.
+- Let's take a look at the `getCurrentPosition` method:
+
+```
+navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
+
+function onSuccess(position) {
+	alert("Latitude: " + position.coords.latitude);
+	alert("Longitude: " + position.coords.longitude);
+}
+
+function onError(error) {
+	alert("Error Code: " + error.code);
+}
+```
+
+- The options object also gives us control over a few key aspects:
+	- enableHighAccuracy: Tells the application to give the best results when possible.
+	- timeOut: Maximum time allotted between call to the `navigator` function and the success handler.
+	- maximumAge: Accept cached position based on age of the result.
+
+##In-Class Lab: Mapping
+- In this lab we will be taking the latitude and longitude coordinates from the device and rendering a Google Map.
+- For the Google Map you will need to use the Google Maps JavaScript API located [here](https://developers.google.com/maps/documentation/javascript/tutorial).
+- Your mission is to give the user a button they can click on that will render a map of their current location.
+
+##Deploying to Google Play
+- In order to deploy to the Google Play store you need to first have a [developer account](http://developer.android.com/distribute/googleplay/start.html).
+- Once you have that you can begin to build the app and upload it through the platform.
+- There are 4 main steps to get the app on the store: build it in release mode, jarsign it, zipalign it, and submit the APK to Google Play.
+- Let's take a look at the signing docs [here](http://developer.android.com/tools/publishing/app-signing.html).
+- Here are the steps we will take:
+	- Step 1: Build the app in release mode: `cordova build --release`
+	- Step 2: Create a signing key: `keytool -genkey -v -keystore my-release-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000`
+	- Step 3: Jarsign the app: `jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore my_application.apk alias_name`
+	- Step 4: Zipalign the app: `zipalign -v 4 your_project_name-unaligned.apk your_project_name.apk`
+- When all of these processed are complete you can submit the new APK to the Google Play store through the developer console.
